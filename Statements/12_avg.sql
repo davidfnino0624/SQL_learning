@@ -1,0 +1,1 @@
+SELECT avg(age) FROM bikes_jp.users;

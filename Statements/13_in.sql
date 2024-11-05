@@ -1,0 +1,1 @@
+SELECT * FROM bikes_jp.users WHERE name IN ('david','sofia');
