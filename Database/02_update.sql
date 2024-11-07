@@ -1,0 +1,1 @@
+UPDATE users SET email = 'viviana.romero@hotmail.com' WHERE user_id = 7;
