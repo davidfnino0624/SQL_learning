@@ -1,0 +1,1 @@
+DROP TABLE service; -- Para borrar la tabla que no permitia agregar informacion debido al error de syntax--
