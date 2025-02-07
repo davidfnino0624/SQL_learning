@@ -19,7 +19,7 @@ create table services (
 
 -- DROP TABLE service; -- Para borrar la tabla que no permitia agregar informacion debido al error de syntax--
 
-CREATE TABLE `services`.`service_copy` (
+CREATE TABLE `services`.`` (
   `id_service` INT NOT NULL,
   `data_time` DATETIME NOT NULL,
   `cleaner_id` INT NOT NULL,
@@ -50,3 +50,58 @@ CREATE TABLE `users` ( -- Creacion de la tabla de usuarios--
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   UNIQUE KEY `id_number_UNIQUE` (`id_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `services`.`` (
+  `id_service` INT NOT NULL AUTO_INCREMENT,
+  `book_date_time` DATETIME NOT NULL, 
+  `cleaner_id` INT NOT NULL,
+  `charge` DOUBLE(7, 2) NOT NULL,
+  `user_id` INT NOT NULL,
+  `address` VARCHAR(50) NOT NULL,
+  `created` datetime default current_timestamp, 
+  UNIQUE INDEX `id_service_UNIQUE` (`id_service` ASC))
+  primary key (id_service)
+  check (charge>=50000); 
+
+
+CREATE TABLE `services`.`service` (
+  `id_service` INT NOT NULL AUTO_INCREMENT,
+  `book_date_time` DATETIME NOT NULL, -- para guardar la fecha y hora de la reserva--
+  `cleaner_id` INT NOT NULL,
+  `charge` DOUBLE(7, 2) NOT NULL,
+  `user_id` INT NOT NULL,
+  `address` VARCHAR(50) NOT NULL,
+  `created` datetime default current_timestamp, -- para agregar una columna que guarde la fecha y hora de creacion de un registro--
+  UNIQUE INDEX `id_service_UNIQUE` (`id_service` ASC),
+  PRIMARY KEY (id_service),
+  check (charge>=50000) -- para agregar una restriccion de que el valor de la columna charge sea mayor o igual a 50000--
+  );
+
+
+  CREATE TABLE `services`.`service` (
+  `id_service` INT NOT NULL AUTO_INCREMENT,
+  `book_date_time` DATETIME NOT NULL,
+  `cleaner_id` INT NOT NULL,
+  `charge` FLOAT(10, 2) NOT NULL, -- para cambiar el tipo de dato de la columna charge--
+  `user_id` INT NOT NULL,
+  `address` VARCHAR(50) NOT NULL,
+  `created` datetime default current_timestamp,
+  UNIQUE INDEX `id_service_UNIQUE` (`id_service` ASC),
+  PRIMARY KEY (id_service),
+  check (charge>=50000)
+  );
+
+
+  CREATE TABLE `services` (
+  `id_service` INT NOT NULL AUTO_INCREMENT,
+  `book_date_time` DATETIME NOT NULL,
+  `cleaner_id` INT NOT NULL,
+  `charge` DECIMAL(10, 2) NOT NULL, -- para cambiar el tipo de dato de la columna charge-- ya no genera advertencia al crear--
+  `user_id` INT NOT NULL,
+  `address` VARCHAR(50) NOT NULL,
+  `created` datetime default current_timestamp,
+  UNIQUE INDEX `id_service_UNIQUE` (`id_service` ASC),
+  PRIMARY KEY (id_service),
+  check (charge>=50000)
+  );
