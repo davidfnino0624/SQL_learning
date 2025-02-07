@@ -33,7 +33,7 @@ CREATE TABLE `services`.`service_copy` (
 ALTER TABLE `services`.`service` 
 CHANGE COLUMN `charge` `charge` DOUBLE NOT NULL ; -- para cambiar el tipo de dato de una columna--
 
-CREATE TABLE `users` (
+CREATE TABLE `users` ( -- Creacion de la tabla de usuarios--
   `user_id` int NOT NULL AUTO_INCREMENT,
   `id_number` varchar(45) NOT NULL,
   `name` varchar(20) NOT NULL,
