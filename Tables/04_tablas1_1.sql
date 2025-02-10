@@ -24,7 +24,7 @@ CREATE TABLE `services` (
   `created` datetime default current_timestamp,
   UNIQUE INDEX `id_service_UNIQUE` (`id_service` ASC),
   PRIMARY KEY (id_service),
-  FOREIGN KEY (user_id) REFERENCES users (user_id), -- 
+  FOREIGN KEY (user_id) REFERENCES users (user_id), 
   check (charge>=50000)
   );
 

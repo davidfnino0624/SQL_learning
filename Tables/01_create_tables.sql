@@ -43,7 +43,7 @@ CREATE TABLE `users` ( -- Creacion de la tabla de usuarios--
   `address` varchar(45) NOT NULL,
   `phone_number` varchar(16) NOT NULL,
   `dob` date NOT NULL,
-  `rol` varchar(10) NOT NULL,
+  --`rol` varchar(10) NOT NULL,--
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `phone_number_UNIQUE` (`phone_number`),
@@ -105,3 +105,19 @@ CREATE TABLE `services`.`service` (
   PRIMARY KEY (id_service),
   check (charge>=50000)
   );
+
+
+CREATE TABLE `cleanitapp`.`payment_method` (
+  `id_payment_method` INT NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `product_number` INT NOT NULL,
+  `bank` VARCHAR(45) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id_payment_method`),
+  UNIQUE INDEX `id_payment_method_UNIQUE` (`id_payment_method` ASC) VISIBLE,
+  INDEX `fk_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_pmuser`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `cleanitapp`.`users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
