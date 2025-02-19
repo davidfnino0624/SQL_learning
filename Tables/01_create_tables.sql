@@ -121,3 +121,23 @@ CREATE TABLE `cleanitapp`.`payment_method` (
     REFERENCES `cleanitapp`.`users` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE TABLE `services` (
+  `id_service` int NOT NULL AUTO_INCREMENT,
+  `book_date_time` datetime NOT NULL,
+  `cleaner_id` int NOT NULL,
+  `charge` decimal(10,2) NOT NULL,
+  `user_id` int NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_payment_method` int NOT NULL,
+  PRIMARY KEY (`id_service`),
+  UNIQUE KEY `id_service_UNIQUE` (`id_service`),
+  KEY `cleaner_id` (`cleaner_id`),
+  KEY `user_id` (`user_id`),
+  KEY `fk_payment_idx` (`id_payment_method`),
+  CONSTRAINT `fk_payment` FOREIGN KEY (`id_payment_method`) REFERENCES `payment_method` (`id_payment_method`),
+  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`cleaner_id`) REFERENCES `cleaners` (`cleaner_id`),
+  CONSTRAINT `services_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `services_chk_1` CHECK ((`charge` >= 50000))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
