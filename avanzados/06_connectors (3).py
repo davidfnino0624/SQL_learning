@@ -1,7 +1,6 @@
 import mysql.connector
 
 def print_user(user):
-
     config = {
         "host": "127.0.0.1",
         "port": "3306",
@@ -13,8 +12,8 @@ def print_user(user):
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
 
-    query = "SELECT * FROM clientes WHERE nombre LIKE '" + user + "%';"
-    cursor.execute(query)
+    query = "SELECT * FROM clientes WHERE nombre LIKE %s" # %s is the placeholder
+    cursor.execute(query, (user + "%",)) # pass the value as a tuple
 
     result = cursor.fetchall()
 
@@ -24,4 +23,5 @@ def print_user(user):
     cursor.close()
     connection.close()
 
-print_user('Isabel')
+print_user('Isabel') 
+#esta es la forma correcta de hacerlo, ya que se evita la inyeccion de codigo SQL
